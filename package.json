@@ -1,22 +1,21 @@
 {
-  "name": "revo-calendar",
-  "version": "3.2.3",
+  "name": "revo-calendar-jzepeda",
+  "version": "3.3.0",
   "description": "React Event Calendar Component",
   "author": {
     "name": "Gabriel Molter",
     "url": "https://gabrielmolter.com/"
   },
   "license": "MIT",
-  "repository": "gjmolter/revo-calendar",
+  "repository": "JZepeda26/revo-calendar",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "source": "src/index.tsx",
   "scripts": {
     "test": "jest",
     "test-coverage": "jest --coverage",
-    "build": "rollup -c"
+    "build": "rollup -c --bundleConfigAsCjs"
   },
-  "homepage": "https://gjmolter.github.io/revo-calendar/",
   "keywords": [
     "event",
     "calendar",
@@ -40,7 +39,7 @@
     "@babel/preset-env": "^7.14.2",
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",
-    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-typescript": "^8.2.1",
     "@types/jest": "^27.0.3",
     "@types/react": "^17.0.8",

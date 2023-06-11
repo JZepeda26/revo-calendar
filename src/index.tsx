@@ -43,6 +43,7 @@ const RevoCalendar = ({
   showSidebarToggler = true,
   sidebarDefault = true,
   onePanelAtATime = false,
+  allowEditEvent = true,
   allowDeleteEvent = false,
   allowAddEvent = false,
   openDetailsOnDateSelection = true,
@@ -54,6 +55,7 @@ const RevoCalendar = ({
   dateSelected = () => {},
   eventSelected = () => {},
   addEvent = () => {},
+  updateEvent = () => {},
   deleteEvent = () => {},
 }: Props) => {
   // TRANSFORM ANY PASSED COLOR FORMAT INTO RGB.
@@ -328,6 +330,7 @@ const RevoCalendar = ({
     var selectedDate = new Date(currentYear, currentMonth, currentDay);
 
     // WILL SHOW DELETE EVENT BUTTON ON CURRENT showDelete INDEX. -1 WON'T SHOW ANYTHING
+    const [showEdit, setEditState] = useState(-1);
     const [showDelete, setDeleteState] = useState(-1);
 
     // MAKE SURE NO ANIMATION WILL RUN ON NEXT RE-RENDER.
@@ -345,12 +348,16 @@ const RevoCalendar = ({
       }
     }
 
-    function toggleDeleteButton(i: number) {
+    function toggleButtonDetails(i: number) {
       // GIVE PARENT COMPONENT THE CURRENT SELECTED EVENT.
       eventSelected(i);
 
       if (allowDeleteEvent) {
         showDelete === i ? setDeleteState(-1) : setDeleteState(i);
+      }
+
+      if (allowEditEvent) {
+        showEdit === i ? setEditState(-1) : setEditState(i);
       }
     }
 
@@ -365,7 +372,7 @@ const RevoCalendar = ({
 
       if (helperFunctions.isValidDate(eventDate) && tempDate.getTime() === selectedDate.getTime()) {
         const event = (
-          <Event key={index} onClick={() => toggleDeleteButton(index)} role="button">
+          <Event key={index} onClick={() => toggleButtonDetails(index)} role="button">
             <p>{events[index].name}</p>
             <div>
               {events[index].allDay ? (
@@ -396,6 +403,7 @@ const RevoCalendar = ({
                 </div>
               )}
             </div>
+            {showEdit === index && <button onClick={() => updateEvent(index)}>{languages[lang].update}</button>}
             {showDelete === index && <button onClick={() => deleteEvent(index)}>{languages[lang].delete}</button>}
           </Event>
         );

@@ -38,6 +38,7 @@ export interface Props {
   sidebarDefault?: boolean;
   onePanelAtATime?: boolean;
   allowDeleteEvent?: boolean;
+  allowEditEvent?: boolean;
   allowAddEvent?: boolean;
   openDetailsOnDateSelection?: boolean;
   timeFormat24?: boolean;
@@ -48,6 +49,7 @@ export interface Props {
   dateSelected?(date: { day: number; month: number; year: number }): void;
   eventSelected?(index: number): void;
   addEvent?(date: Date): void;
+  updateEvent?(index: number): void;
   deleteEvent?(index: number): void;
 }
 
