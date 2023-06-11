@@ -35,6 +35,10 @@ const RevoCalendar = ({
   todayColor = "#3B3966",
   textColor = "#333333",
   indicatorColor = "orange",
+  deleteBgColor = '#ff7979',
+  updateBgColor = '#c7d4ff',
+  deleteTextColor = 'white',
+  updateTextColor = 'white',
   animationSpeed = 300,
   sidebarWidth = 180,
   detailWidth = 280,
@@ -374,6 +378,7 @@ const RevoCalendar = ({
         const event = (
           <Event key={index} onClick={() => toggleButtonDetails(index)} role="button">
             <p>{events[index].name}</p>
+            { events[index].subtitle && (<p><small style={{fontWeight: "lighter", fontSize: "0.84rem"}}>{events[index].subtitle}</small></p>) }
             <div>
               {events[index].allDay ? (
                 <>
@@ -399,12 +404,26 @@ const RevoCalendar = ({
                   <svg width="20" height="20" viewBox="0 0 24 24">
                     <path fill={primaryColorRGB} d={events[index].extra?.icon} />
                   </svg>
-                  <span>{events[index].extra?.text}</span>
+                  <div dangerouslySetInnerHTML={{ __html: events[index].extra?.text}}></div>
                 </div>
               )}
             </div>
-            {showEdit === index && <button onClick={() => updateEvent(index)}>{languages[lang].update}</button>}
-            {showDelete === index && <button onClick={() => deleteEvent(index)}>{languages[lang].delete}</button>}
+            {events[index].details?.length > 0 && (
+                <div style={{justifyContent: "normal"}}>
+                {events[index].details.map((detail: any) => {
+                  return (
+                    <>
+                      <svg width="20" height="20" viewBox="0 0 24 24">
+                        <path fill={primaryColorRGB} d={detail.icon} />
+                      </svg>
+                      <div dangerouslySetInnerHTML={{ __html: detail.text }}></div>
+                    </>
+                  );
+                })}
+              </div>
+              )}
+            {showEdit === index && <button style={{backgroundColor: updateBgColor, color: updateTextColor}} onClick={() => updateEvent(index)}>{languages[lang].update}</button>}
+            {showDelete === index && <button style={{backgroundColor: deleteBgColor, color: deleteTextColor}} onClick={() => deleteEvent(index)}>{languages[lang].delete}</button>}
           </Event>
         );
         eventDivs.push(event);

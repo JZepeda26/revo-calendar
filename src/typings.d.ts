@@ -10,12 +10,14 @@ declare module "*.svg" {
 
 interface Events {
   name: string;
+  subtitle?: string;
   date: number;
   allDay?: boolean;
   extra?: {
     icon?: string;
     text: string;
   };
+  details?: []
 }
 
 export interface Props {
@@ -29,6 +31,10 @@ export interface Props {
   todayColor?: string;
   textColor?: string;
   indicatorColor?: string;
+  deleteBgColor?: string;
+  updateBgColor?: string;
+  deleteTextColor?: string;
+  updateTextColor?: string;
   animationSpeed?: number;
   sidebarWidth?: number;
   detailWidth?: number;
