@@ -378,7 +378,9 @@ const RevoCalendar = ({
         const event = (
           <Event key={index} onClick={() => toggleButtonDetails(index)} role="button">
             <p>{events[index].name}</p>
-            { events[index].subtitle && (<p><small style={{fontWeight: "lighter", fontSize: "0.84rem"}}>{events[index].subtitle}</small></p>) }
+            { events[index].subtitle && (
+               <p><div dangerouslySetInnerHTML={{ __html: events[index].subtitle}}></div></p>
+            )}
             <div>
               {events[index].allDay ? (
                 <>
