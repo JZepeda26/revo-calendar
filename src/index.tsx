@@ -305,7 +305,7 @@ const RevoCalendar = ({
           }
         }}
       >
-        <h1>{languages[lang].months[currentMonth]}</h1>
+        <h1 className="title-current-month">{languages[lang].months[currentMonth]}</h1>
         <div>
           <div>
             {languages[lang].daysShort.map((weekDay: string) => {
