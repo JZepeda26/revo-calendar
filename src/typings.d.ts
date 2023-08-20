@@ -1,3 +1,5 @@
+import { Component } from "react";
+
 interface SvgrComponent
   extends React.StatelessComponent<React.SVGAttributes<SVGElement>> {}
 
@@ -57,6 +59,7 @@ export interface Props {
   addEvent?(date: Date): void;
   updateEvent?(index: number): void;
   deleteEvent?(index: number): void;
+  header?(month: string): React.ReactNode | undefined;
 }
 
 //Styled Component Props

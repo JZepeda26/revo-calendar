@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Component } from "react";
 
 import helperFunctions from "./helpers/functions";
 import translations from "./helpers/translations";
@@ -61,6 +61,9 @@ const RevoCalendar = ({
   addEvent = () => {},
   updateEvent = () => {},
   deleteEvent = () => {},
+  header = (month: string) => {
+    return <h2 className="title-current-month">{month}</h2>
+  }
 }: Props) => {
   // TRANSFORM ANY PASSED COLOR FORMAT INTO RGB.
   const primaryColorRGB = helperFunctions.getRGBColor(primaryColor);
@@ -305,7 +308,7 @@ const RevoCalendar = ({
           }
         }}
       >
-        <h1 className="title-current-month">{languages[lang].months[currentMonth]}</h1>
+        {header(languages[lang].months[currentMonth])}
         <div>
           <div>
             {languages[lang].daysShort.map((weekDay: string) => {
