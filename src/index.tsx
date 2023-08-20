@@ -309,6 +309,7 @@ const RevoCalendar = ({
         }}
       >
         {header(languages[lang].months[currentMonth])}
+        <br></br>
         <div>
           <div>
             {languages[lang].daysShort.map((weekDay: string) => {
